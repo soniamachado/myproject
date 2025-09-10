@@ -36,3 +36,47 @@ s2='python'
 s3=s1+s2
 
 print(s3)
+
+x,y,z='Orange','Banana','Cherry'
+print(x)
+print(y)
+print(z)
+
+x=y=z='Orange'
+print(x)
+print(y)
+print(z)
+
+x=34.67
+x1=int(x)
+
+y=313.99
+y1=int(y)
+
+print('a parte inteira de ',x ,' é ',x1)
+print('a oarte inteira de ', y,' é ',y1)
+
+print('\nexercicio 9')
+str_url='http://pythonworld.com7course'
+s2=str_url.replace('.com','.net')
+print("str_url",str_url)
+print('s2',s2)
+
+count=str_url.count('/')
+print('Contagem de "/":',count)
+#a primeiro posição é a indice "0"
+pos=str_url.find('python')
+print('Posição de \"python\":',pos)
+
+#exercicio 2.10
+frase= 'o mundo da programação Python'
+print(len(frase))
+#print(f'o tamanho da string é:{print(len(frase))} caracteres.') ou tamanho =print(len(frase))  print(f'o tamanho da string é:{tamanho}caracteres.')
+frase2=frase.upper()
+print(frase2)
+frase3= frase.replace('o', '*')
+print(frase3)
+
+frase4=frase.replace(' ', '\n')
+print(frase4)
+print(' " ', frase, '"')
