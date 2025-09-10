@@ -16,3 +16,23 @@ var2=2*var1
 var3=3*var1
 
 print ('var1=', var1,'var2=',var2,'var3=',var3)
+
+#exercicio 4
+x=15.56
+y=30.15
+z=45.3
+(x2,y2,z2)=(x,y,z)
+print('X=',x2)
+print('Y=',y2)
+print("Z=",z2)
+
+s1="Welcome to"
+s1="Pyhton"
+
+#exercicio5
+s1='Welcome to '
+s2='python'
+
+s3=s1+s2
+
+print(s3)
