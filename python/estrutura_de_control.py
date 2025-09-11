@@ -102,3 +102,19 @@ if(valor>=1 and valor<=12):
         print('mês com 28 dias')
     else:
         print('o mês tem 30 dias')
+
+#ou
+valor = int(input("Introduza um número: "))
+
+match valor:
+    case 4 | 6 | 9 | 11:
+        print("30 dias")
+    case 1 | 3 | 5 | 7 | 8 | 10 | 12:
+        print("31 dias")
+    case 2:
+        print("28 ou 29 dias")
+    case _:
+        print("Mês inválido")
+#match, usa-se|, nunca in
+'''exemplo:case 4|6|9 significa se o valor for 4 ou 6 ou 9
+faltava o _ no final do case para indicar que é o valor default = é como apanha qualquer valor que nao esteja definido'''
