@@ -37,3 +37,18 @@ print()
 print("Hello, World!")
 print("C:\Programs\Python")
 print("C:\\Programs\\Python")
+
+var += 10  # var = var + 10
+var -= 10  # var = var - 10
+var *= 10  # var = var * 10
+var /= 10  # var = var / 10
+var //= 10 # var = var // 10
+var %= 10  # var = var % 10
+var **= 10 # var = var ** 10
+
+"concatenation and repetition"
+firName = "John"
+lastName = "Doe"
+fullName = firName + " " + lastName
+print(fullName)  # Output: John Doe
+print(firName * 3)  # Output: JohnJohnJohn  
