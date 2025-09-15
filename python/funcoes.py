@@ -127,3 +127,16 @@ def aritmetica(x=0,y=0): #variável com default de 0
 (a,b)=aritmetica(12,3)
 print('Soma=',a)#vai retornar o valor da soma
 print('subtração=',b)#vai retornar o valor da subtração
+
+#this function takes the input from the user and converts it into a string
+print('what is your name?') #ask for their name
+name = input() #get their name
+print('Hi, {}'.format(name))
+#what is your name?
+#Alex
+#Hi, Alex
+userAge=input("What is your age")  #ask for their age
+print("You are " + userAge + " years old") #print their age
+#What is your age
+#25
+#You are 25 years old   
