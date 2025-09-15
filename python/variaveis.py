@@ -80,3 +80,9 @@ print(frase3)
 frase4=frase.replace(' ', '\n')
 print(frase4)
 print(' " ', frase, '"')
+
+#the slice() function The slice() function is used to retunr a specific part of the string, list, dictionary, etc
+a=("a","b","c","d","e","f","g","h","i","j")
+b=slice(2,5)
+print(a[b])
+#output:('c','d','e')
