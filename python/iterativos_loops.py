@@ -212,3 +212,9 @@ for i in range(a,b+1):
      fat=fat*k
    
    print(i,"!=",fat)'''
+
+phrase =['printed', 'with','a','dash','in','between']
+for word in phrase:
+    print(word, end='-')
+print('\n')
+#output: printed-with-a-dash-in-between-
