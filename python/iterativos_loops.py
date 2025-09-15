@@ -72,9 +72,10 @@ while contador <= 5:
 '''
 
 #Exercício 7 Codifique um programa em Python que imprime o seguinte padrão: 0x1= 1x1=1 2x2=4 3x3=9 4x4=16 5x5=25 ..
-while i<=100:
-    print(i,'x',i,'=',i*i)
-    i=i+1
+h=0
+while h<=100:
+    print(h,'x',h,'=',h*h)
+    h=h+1
 
 '''num=int(input('introduza um valor'))
 i=0
@@ -99,3 +100,115 @@ if(z==True):
 else:
         print('não é primo')
 #print('O número que indicou será primo', numero_primo(numero))
+
+print ("exercicio 9")
+'''Desenvolver um programa, que solicita ao utilizador dois valores, e escreve no terminal todos
+os números primos entre esses dois valores, assim que analisar um número divisível por 5
+termina o programa'''
+def numero_primo(inteiro):
+    if inteiro > 1:
+        for i in range(2, inteiro):
+            if (inteiro % i) == 0:
+                return False
+        return True
+    else:
+        return False        
+'''No seu código, quando inteiro = 2, o loop for i in range(2, inteiro): é range(2, 2), que é vazio, logo o corpo do loop não é executado, e a função retorna True diretamente, indicando que 2 é primo'''   
+valor1=int(input('indique o primeiro valor'))
+valor2=int(input('indique o segundo valor'))
+
+for i in range(valor1, valor2+1):
+    if (i%5==0):
+        print('termina o programa')
+        break
+    z=numero_primo(i)
+    if(z==True):
+        print (i,'é primo')
+    else:
+        print(i,'não é primo')  
+'''Desenvolver um programa, que solicita ao utilizador dois valores, e escreve no terminal todos
+os números primos entre esses dois valores, mas não escreve os primos entre 10 e 20.'''
+a=int(input('introduza um valor'))
+b=int(input('introduza outro valor'))
+
+def primo(n):
+    p=True
+    for i in range(2,n):
+        if (n%i ==0 ):
+            p=False
+            break
+
+    return p
+ 
+for i in range(a,b+1):
+    if(i>=10 and i<=20):
+       continue
+    c=primo(i)
+    if(c==True):
+       print("..", i)
+
+'''Quando i está entre 10 e 20 (inclusive), o comando continue faz com que o programa ignore o que vier depois dentro do loop naquela volta específica e vá direto para a próxima iteração, ou seja, não executa o restante do código para esses valores de i'''
+print("exer.11- Alterar o programa anterior de forma a analisar os valores do maior para o menor.")
+a=int(input('introduza um valor'))
+b=int(input('introduza outro valor'))
+
+def primo(n):
+ p=True
+ for i in range(2,n):
+    if (n%i ==0 ):
+        p=False
+        break
+
+ return p
+ 
+for i in reversed(range(a,b+1)):
+    print(i)
+    if(i<10 and i>20):
+        c=primo(i)
+        if(c==True):
+            print("..", i)
+
+'''
+i=b
+while(i>=a):
+    if(i<10 or i>20):
+        c=primo(i)
+        if(c==True):
+            print('...', i)
+            
+    i=i-1'''
+
+print('Desenvolver um programa que imprime no terminal o fatorial dos valores entre 1 e 15')
+#fatorial de um número n é o produto de todos os inteiros positivos menores ou iguais a n. É representado por n! e definido como:
+#n! = n × (n - 1) × (n - 2) × ... × 2 × 1, com a exceção de 0! que é igual a 1.
+#Por exemplo, 5! = 5 × 4 × 3 × 2 × 1 = 120.
+for i in range(1,16):
+    fatorial=1
+    for j in range(1,i+1):
+        fatorial=fatorial*j
+    print(i,'! =',fatorial) 
+
+
+def fatorial(numero):
+   fat=1
+   for k in range(2,numero+1):
+     fat=fat*k
+
+   return fat
+
+a=int(input("Introduza um valor:"))
+b=int(input("Introduza outro valor:"))
+
+for i in range(a,b+1):
+   f=fatorial(i)
+   
+   print(i,"!=",f) 
+
+   
+'''
+for i in range(a,b+1):
+   fat=1
+   for k in range(2,i+1):
+     fat=fat*k
+   
+   print(i,"!=",fat)'''
