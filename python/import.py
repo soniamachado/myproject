@@ -102,7 +102,7 @@ for f in os.scandir(dir_path):
     else:
         print("Ficheiro:", f.name)
 '''
-#exercicio 7
+
 #Queres que eu te mostre como listar só os ficheiros Python (.py) dessa pasta
 '''import os
 
@@ -127,7 +127,57 @@ Ficheiro Python: leitura_de_dados.py
 #os.scandir(dir_path) é uma função do módulo os do Python.
 #Recebe como argumento um caminho de pasta (dir_path).
 #Devolve um iterador de objetos os.DirEntry.
+'''Quando digo que os.scandir() devolve objetos ricos (DirEntry), quero dizer que não devolve apenas strings com os nomes dos ficheiros/pastas.
+Exemplo com os.listdir()
+import os
+dir_path = '/home/sonia_machado'
+for name in os.listdir(dir_path):
+    print(name)
+saída: 
+variaveis.py
+documento.txt
+projetos
+Aqui recebeste apenas strings. Não sabes se são pastas, ficheiros, nem tens o caminho completo
 
-'''Diferença para outras funções parecidas
+Exemplo com os.scandir()
+import os
+dir_path = '/home/sonia_machado'
+for entry in os.scandir(dir_path):
+    print(entry.name,#mostra o objeto 
+    entry.is_file(),# True se for ficheiro
+    entry.is_dir(),# True se for diretório
+    entry.path, #caminho completo
+    entry.name())# nome simples
+
+
+
+Diferença para outras funções parecidas
 os.listdir(path) → devolve só uma lista de nomes (strings).
 os.scandir(path) → devolve objetos ricos (DirEntry) que já sabem se é ficheiro, diretório, caminho completo, etc.'''
+#f.stat() devolve estatisticas(tamanhi, data de modificação, permissões, etc.)
+# resultado do código em cima
+'''<DirEntry 'variaveis.py'>
+variaveis.py
+/home/sonia_machado/variaveis.py
+True
+False
+
+<DirEntry 'projetos'>
+projetos
+/home/sonia_machado/projetos
+False
+True
+'''
+#dirtentry: é uma classe interna do Pyhton que representa uma entrada num diretório (pasta).
+
+print('exercicio 7')
+import shutil
+import os.path
+#creating the zip file
+archieved=shutil.make_archive('meu_backup','zip','/home/sonia_machado/exer7.5')
+#checking if the zip file exists
+if os.path.exists(archieved):
+    print('backup created successfully', archieved)
+else:
+    print('error creating backup')
+
