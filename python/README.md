@@ -1,1 +1,0 @@
-alterado pelo outro utilizador
