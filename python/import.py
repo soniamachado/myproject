@@ -170,6 +170,8 @@ True
 '''
 #dirtentry: é uma classe interna do Pyhton que representa uma entrada num diretório (pasta).
 
+'''Solicitar a path de uma pasta ao utilizador e comprimir todo o seu conteúdo através do código
+que segue:'''
 print('exercicio 7')
 import shutil
 import os.path
