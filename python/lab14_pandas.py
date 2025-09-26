@@ -71,7 +71,8 @@ print('lab14_exer2')
 import pandas as pd#importa a bibliotexa pandas e dá-lhe o apelido pd
 #pandas é uma biblioteca poderosa para análise e manipulação de dados em Python, parecido com excel ou sql.
 result=pd.read_csv(r'/home/sonia_machado/Python_EISNT/leitura_de_dados/organizations.csv')
-#lÊ o ficheiro CSV (read_csv) e guarda o resultado na variável result, DataFrame (tabela), cada linha do csv vira linha no dataframe e cada coluna vira uma coluna no dataframe
+#read_csv() é uma função do pandas para ler o ficheiro no formato CSV (read_csv) e guarda o resultado na variável result,e tranformado em um objeto DataFrame do pandas(tabela), que é uma estrutura de dados tabular, cada linha do csv vira linha no dataframe e cada coluna vira uma coluna no dataframe
+#depois da linha, a variável result contém os dados de ficheiro CSV já organizados em formato pandas para análise e manipulação.
 print(result.head())
 #mostra as 5 primeiras linhas da tabela(padrão do head())
 
@@ -89,7 +90,7 @@ print('lab14_exer3')
 ''' exer3
 1. Entre [] está se a falar de colunas. exemplo df[['DATE,'REGION']].head(5) mostra 5 linhas apenas das colunas DATE e REGION
 
-2.Selcionar linhas por posição.formas de extrair a linha print(df[3:10])exemplo do valor-MOSTRA AS LINHAS DA 3 até à 9
+2.Selcionar linhas por posição.formas de extrair a linha print(df[3:10])exemplo do valor-MOSTRA AS LINHAS DA 3 até à 9 do indice(coemaçando em 0 não esquecer)
 #as primeiras linhas que eu defenir é através do médtod head print(df[['DATE,'REGION']].head(5))
 #ver a amostra no final é através do  print(df[['DATE,'REGION']].tail(5)), colunas DATE e REGION
 
@@ -98,13 +99,13 @@ print('lab14_exer3')
 df.iloc[0:5, [0, 2]]
 Mostra as 5 primeiras linhas e apenas as colunas de índice 0 e 2.
 
-posso tambem procurar a coluna e lista através do método df.loc[ 10:20, ['units', 'salaes]], mais ums
+posso tambem procurar as linhas e colunas através do método df.loc[ 10:20, ['units', 'salaes]], mais ums
 vez quando estou a ver colunas colocar em formarto de listas, Selecionar linhas e colunas pelo nome(loc)-trabalha com nomes de colunas e rótulos de linhas
+sem indicar os indices
 
-4.Selecionar linhas e colunas pelo nome (loc)
-df_selected=df.loc[10:20, ['units', 'sales']]
+4.df_selected=df.loc[10:20, ['units', 'sales']]
 print(df_selected.to_string(index=False))
-aqui pegaste nas linhas 10 e 20 e só nas colunas units e sales, e imprime a tablea sem mostrar a coluna de índices
+aqui pegaste nas linhas 10 e 20 e só nas colunas units e sales, e imprime a tabela sem mostrar a coluna de índices
 
 5
 filtragem a nível de linhas + colunas depois
@@ -116,3 +117,53 @@ print(df[(df['units']>30) & (df['sales']>500)]['Region'])mostra a coluna Region,
 #MÉTODO QUERY
 '''df_query=df.query('Units==35 and Sales>500)
 faz o mesmo que o exemplo de cima, mas com uma sintaze parecida com SQL, escolheu se Units==35 e Sales>500'''
+
+import pandas as pd
+data={
+    'DATE':['2023-01-01','2023-01-02','2023-01-03','2023-01-04','2023-01-05'],
+    'REGION':['Este','Norte','Sul','Este','Oeste'],
+    'Type':['A','B','A','B','A'],
+    'units':[18,14,17,26,3],
+    'sales':[306.0,448.0,425.0,832.0,33.0]
+    }
+'''tabela original data
+Date,Region,Type,Units,Sales
+2023-01-01,Este,A,18,306.0
+2023-01-02,Norte,B,14,448.0
+2023-01-03,Sul,A,17,425.0
+2023-01-04,Este,B,26,832.0
+2023-01-05,Oeste,A,3,33.0'''
+df=pd.DataFrame(data)#cria um DataFrame a partir do dicionário data
+
+#1-Mostrar o DataFrame com indicação do indice
+print("\nDataFrame completo:")
+print(df)
+#2-Selecionarr 5 linhas aleatórias somente com as colunas Date e Region
+print("\nApresentação de linhas aleaórias:")
+print(df[['Date','Region']].sample(5))
+#3-Selecionar apenas as linhas 15,16,17,18, 19 e 20
+print("\n Linhas 15,16,17,18,19")
+print(df[14:21])
+#4- Selecionar as 5 primeiras linhas e as colunas 0,1 e 2
+print("\n Imprimir as primeiras 5 Linhas")
+print(df.iloc[:5, [0, 2]])
+#5-d) Apresentar as colunas Units e Sales da das 10 primeiras linhas
+print("\n Imprime as 10 linhas de 10 a 20 das colunas units e sales")
+print( df.loc[10:20, ['Units', 'Sales']] )
+#6-Definir um novo dataframe(com os dados do alínea anterior) e escreve o seu
+#conteúdo no terminal mas sem a numeração das linhas
+print('\nescrever as mesmas linhas mas sem a numeração das linhas')
+df_selected = df.loc[10:20, ['Units', 'Sales']]
+print(df_selected.to_string(index=False))#ver sem índice
+
+#7-Apresentar as regiões com mais de 30 Units
+print('\nescrever as mesmas linhas mas sem a numeração das linhas')
+print(df[df['Units'] > 30]['Region'])
+
+#8- Apresentar as regiões com mais de 30 Units e Sales superiores ou iguais a 500
+print('\n30 Units e Sales superiores ou iguais a 500')
+print(df[ (df['Units'] > 30) & (df['Sales'] >= 500 ) ]['Region'])
+
+#9- Apresentar as regiões com 100 Units ou Sales superiores ou iguais a 1000
+print(' Apresentar as regiões com 100 Units ou Sales superiores ou iguais a 1000')
+print(df[(df['Units'] == 100 ) & (df['Sales'] >= 1000 ) ]['Region'])
