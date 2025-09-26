@@ -115,4 +115,4 @@ print(df[(df['units']>30) & (df['sales']>500)]['Region'])mostra a coluna Region,
 
 #MÉTODO QUERY
 '''df_query=df.query('Units==35 and Sales>500)
-faz o mesmo que o exemplo de cima, mas com uma sintaze parecida com SQL'''
+faz o mesmo que o exemplo de cima, mas com uma sintaze parecida com SQL, escolheu se Units==35 e Sales>500'''
