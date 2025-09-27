@@ -1,0 +1,8 @@
+#ignore pastas de cache
+__pycache__/
+ #é uma pasta com ficheiros compilados, serve para acelerar execuções futuras, pyhton recria quando precisa
+*.pyc
+#Ignore ficheiros temporários do sistema
+*.log
+*.tmp
+*.Identifier
