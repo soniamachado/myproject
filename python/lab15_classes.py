@@ -60,18 +60,31 @@ contaAna.deposito(100)
 print("Saldo da Ana:", contaAna.obter_saldo())
 
 # Teste do __str__
-print()
-print(contaAna)  # imprime de forma legível
+print(contaAna)  # imprime de forma legível por causa do __str__
+
+'''explicação do ___str___
+por padrão mostra como <__main__.contabancaria object at 0x7f...>
+ou seja : o tipo do objeto+a posição de memória. Isso não é muito útil. Para mudar esse comportamento, definimos o método especial __str__ dentro da classe
+def __str__(self):
+    return f"Conta de {self.nome_client},nº{self.numero_conta}, saldo {self.saldo}€
+Desta forma ele devolve, quando acionas print(contaAna), ele devolve a string formatada
+R: Conta de Ana, nº 7777, saldo 650€, ou seja, __str__=como o objetivo deve ser apresentado como texto
 
 
-'''contaRui.numero_conta =123;
-contaRui.saldo= 250;
-contaRui.escrever_dados()
-contaRui.levantamento(5000)
+explicação self
+O self representa o próprio objeto que está a ser usado. É um cartão de identidade do objeto atual
+exemplo
+contaRui=contaBancaria('rui',123,250)
+contaAna=contaBancaria('Ana,7777,550)
 
-contaAna.numero_conta=7777;
-contaAna.saldo=550;
-contaAna.levantamento(50)
-contaAna.escrever_dados()
+Quando chamas contaRui.escrever_dados(), python executa:
+    contaBancaria.escrever_dados(contaRui)
+ou seja, passa o objeto contaRui como argumento para self. Quando chamas contaAna.escrever_dados(), faz o mesmo mas passa contaAna.
+Isso garante que cada objeto usa os seus próprios atributos(nome_cliente, saldo,etc.).
+Senão tivessemos self, as funções não saberiam a que objeto se referem,
 
-print(contaAna)'''
+
+Resumindo
+
+__str__ → define como o objeto deve ser impresso (em vez de mostrar só a posição na memória).
+self → é sempre o primeiro argumento dos métodos, e representa o objeto atual (cada conta guarda e usa os seus próprios dados).'''
