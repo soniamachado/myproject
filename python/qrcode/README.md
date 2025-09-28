@@ -1,0 +1,1 @@
+#criação deste documento de modo a guardar o qrcodes produzidos
