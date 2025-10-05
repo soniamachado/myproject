@@ -59,3 +59,30 @@ Se o container não estiver a correr (mas existe parado), arranca-o com:docker s
 Liga-te ao SQL Server com sqlcmd: docker exec -it sql1 /opt/mssql-tools/bin/sqlcmd \
    -S localhost -U SA -P 'Your_password123'
 
+Comando:
+            SQL                         python (importar pandas do pd)     Excel
+Load Dara; select from table_name;      df=pd.read.csv('file.csv')         File->open
+filter      delect*from table_name       df[df['col']>100]                  =filter(A:A,A:A>100)
+            where col>100;
+select      select col, col2             df[['col','col2']]                 click columns(A,B)
+columns     From table_name;
+order       select*from table_name     df.sort_values(by='col,              Data Tab+Sort
+            order by col desc;         ascending=false)
+aggregate   select column, count(*)    df.groupby('col').size()            pivot table
+            from table_name
+            group by col;
+count       select count(col)          len(df)                              =count(A:A)
+            from table_name
+Average     select AVG(col)            df['col'].mean()                     =average(A:A)
+            from table_name            
+Sum         select SUM(col)            df['col'].sum()                      =sum(A:A)
+            from table_name;
+Remove      select distinct col        df.drop_duplicate()                  Data-> remove duplicates
+duplicate   from table_name      
+join tables select from A              df.merge(df2,on='id')               =vlookup()
+            join B on A.id=B.id        
+New column  Select col*2 as new_col    df['new_col']=df['col]*2            New col-> inert formula
+Rename      Alter table table_name     df.rename(columns={'col':'new})     right click->rename
+column      rename column col to new_col;
+Missing     select*from table_name     df.dropna()                         =isblank(A:A)->False
+Data        where col is not null
