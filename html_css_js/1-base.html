@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- charset é a codificação, que a codificação da pagina estão neste tipo: UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- tbm tinha forma de escrever meta name="descritpion" content="um quiz interativo" -->
+    <title>Pagina de portefólio</title>
+    <link rel="stylesheet" href="style.css" />
+    <!---
+    a linha com link rel="stylesheet" href="../css/style.css"  serve para ligar o ficheiro css ao html, o ../ serve para sair da pasta atual e entrar na pasta css e chamar o ficheiro style.css
+    ouseja, o ../ serve para sair da pasta atual e entrar na pasta css e chamar o ficheiro style.css
+    <style>
+      header {
+        background-color: #111;
+      }
+      body {
+        background-color: #222;
+        color: #fff;
+      }
+
+    </style>-->
+  </head>
+  <body class="Light">
+    <header><h1>Welcome to My Web Page</h1><p class="funcao">Desenvolver WEB Full Stack </p></header>
+    
+    <main>
+      <div> 
+      <button class="botao-ligth">Light</button>
+      <button class="botao-dark">Dark</button></div>
+        <section>
+          <h2 class="sobre amarelo">About Me</h2>
+          <p>My name is Sónia Machado, and I am learning web development.</p>
+          <p>This is a simple HTML document structure.</p>
+        </section>
+        <section>
+          <h2>Portfolio</h2>
+          <p>Here you can showcase your projects and skills.</p>
+        </section>
+        <section>
+          <h2>Habilidades</h2>
+          <div class="habilidades">
+            <div id="linguagem" class ="habilidade linguagem"> <!-- class é um atributo que serve para agrupar elementos, se colocasse  class ="habilidade linguagem, seria 2 tipos de classes a ser chamada; usa-se";" no css para diferenciar"-->
+            <!--o id só se pode usar 1x na página id ="linguagem"por exemplo-->  
+              <h3>Soft Skills</h3>
+                
+              <ul>
+                  <li>Comunicação</li>
+                  <li>Trabalho em equipa</li>
+                  <li>Resolução de problemas</li>
+                </ul>
+            </div>
+            <div class ="habilidade">
+              <h3>Hard Skills</h3>
+              
+              <ol>
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+              </ol>
+            </div>
+        </section>
+            <h3>Liguagens</h3>
+            <details>  
+              <summary>Clique para ver as linguagens que conheço</summary>
+              <ul>
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+              </ul>
+            </details>
+            </div>
+          </div>
+        </section>
+        <section>
+    <!--pergunta 1:texto-->
+          <h2>pergunta 2: Na URL https://www.google.com o trecho "google.com é o __
+            <form>
+              <input type="text" id="p2" name="pergunta1" placeholder="Digite sua resposta.." >
+            </form>
+          </h2>
+        </section>
+    <!--pergunta 2:senha -->
+        <section>
+          <h2>Pergunta 2: Escreva um exemplo de senha forte</h2>
+          <form><input type="password" id="p2" name="pergunta2" placeholder="Digite sua resposta.." ></form>
+        </section>
+        
+    <!--pergunta 3:multipla escolha -->
+        <section>
+          <h2>Pergunta 1: Qual a linguagem é usada para estruturar páginas web?</h2>
+          <form>
+            <input type="radio" value="Python" id="p3a" name="pergunta3" ><label for="p3a">Python</label><br />
+            <input type="radio" value="HTML" id="p3b" name="pergunta3" ><label for="p3b">HTML</label><br />
+            <input type="radio" value="CSS" id="p3c" name="pergunta3" ><label for="p3c">CSS</label><br />
+          </form>
+        </section>
+    <!--pergunta 4:data -->
+        <section>
+          <h2>Pergunta 1: Qual a linguagem é usada para estruturar páginas web?</h2>
+          <form> 
+            <input type="date" id="p4" name="pergunta4" >
+          </form>
+        </section>
+    <!--pergunta 5:data -->
+        <section>
+          <h2>Pergunta 5: Qual a linguagem é usada para estruturar páginas web?</h2>
+          <form> 
+            <input type="checkbox" id="p5a" name="pergunta5" value="JavaScript"><label for="p5a">JavaScript</label><br />
+            <input type="checkbox" id="p5b" name="pergunta5" value="HTML"><label for="p5b">HTML</label><br />
+            <input type="checkbox" id="p5c" name="pergunta5" value="CSS"><label for="p5c">CSS</label><br />
+          </form>
+        </section>
+    <!--pergunta 6:data -->
+        <section> 
+          <h2>Pergunta 6: Faça o upload de um arquivo contendo código html</h2>
+          <form> 
+            <input type="file" id="p6" name="pergunta6"  >
+          </form>
+        </section>
+
+    <!--pergunta 7:dropdown, menu suspenso -->
+        <section> 
+          <h2>Pergunta 7: Selecione o atributo do input que define o seu tipo:</h2>
+          <form> 
+            <select id="p7" name="pergunta7"  >
+              <option value="text">Text</option>
+              <option value="password">Password</option>
+              <option value="email">Email</option>
+              <option value="id">id</option>
+            </select>
+          </form>
+        </section>
+<!--pergunta 8:dropdown, menu suspenso -->
+        <section> 
+          <h2>Pergunta 8: qual linguagem de programação é representada pelo logotipo abaixo?</h2>
+
+          <figure><img width=100 src="lms.png" alt="logotipo da pasta cnsc" ><br><figcaption>Figura 1: imagem de um página cncs </figcaption ></figure>
+          <input type="text" id="p8" name="pergunta8" placeholder="Digite sua resposta.." >
+        </section>
+        <h2>Educação</h2>
+        <section>
+          <h2>Projecto </h2>
+          <div>
+          <h3>Frameworks</h3>
+          <ol>
+            <li>Bootstrap</li>
+            <!-- li(item da lista, tudo que te tiver na ul-lista, em que il é item de lista) -->
+            <li>Tailwind CSS</li>
+            <li>React</li>
+          </ol>
+          </div>
+          <div>
+          <h3>Back-end</h3>
+          <ol>
+            <li>Node.js</li>
+            <li>Express</li>
+            <li>Django</li>
+            <!--  ul(lista de pontos, não existe números unorder), <ol>lista order: lista ordenada-->
+          </ol>
+          </div>
+          <div>
+          <h3>réplicca do site gemin</h3>
+          <img width=600 src="gemin.png" alt="print do Projecto do gemin" /><!-- alt :legenda que aparece caso a imagem não seja carregada, o fonte pode tbm se escrever desta forma src="https://via.placeholder.com/150", os dois ../ para sair do ficheiro atual -->
+          <a href=https://www.youtube.com/watch?v=iqHvLJKZeBM&list=PLpdAy0tYrnKzcqd9knClODBDkghwGpzOJ&index=3 target="_blank">Link para o canal do youtube</a>
+          <!-- target="_blank" abre o link numa nova aba, permite a de ancora usar um link, texto que aparece Link para o canal do youtube -->
+          </div>
+          <div>
+          <h3>réplica do site do youtube</h3>
+          <img width=600 src="youtube.png" alt="print do Projecto do google" /><!-- alt :legenda que aparece caso a imagem não seja carregada, o fonte pode tbm se escrever desta forma src="https://via.placeholder.com/150", os dois ../ para sair do ficheiro atual -->
+          <a href=https://www.youtube.com/watch?v=iqHvLJKZeBM&list=PLpdAy0tYrnKzcqd9knClODBDkghwGpzOJ&index=3 target="_blank">Link para o canal do youtube</a>
+          <!-- target="_blank" abre o link numa nova aba, permite a de ancora usar um link, texto que aparece Link para o canal do youtube -->
+          </div>
+          <div>
+          <h3>réplica da página de login da Hashtag</h3>
+          <img width=600 src="lms.png" alt="print do Projecto do google" /><!-- alt :legenda que aparece caso a imagem não seja carregada, o fonte pode tbm se escrever desta forma src="https://via.placeholder.com/150", os dois ../ para sair do ficheiro atual -->
+          <a href=https://lms.c-academy.pt/CNCS/lang-pt-PT target="_blank">Link para da pagina cncs</a>
+          <!-- target="_blank" abre o link numa nova aba, permite a de ancora usar um link, texto que aparece Link para o canal do youtube -->
+          </div>
+        </section>
+        <section>
+        <h2>Contact Me</h2>
+          <div>
+            <p>You can reach me at:xxx@yyy.com</p>
+            <p>Telefone: 912341111  </p>
+            <p>Site: <a target="_blank" href="https://www.linkedin.com/in/s%C3%B3nia-machado/">LinkdIn página de perfil</a></p>
+          </div>
+        </section>
+        <!--tabela de pontuação -->
+        <section>
+          <h2><strong>Tabela de ponto</strong></h2>
+          <table border="1">
+              <thead>
+                <tr>
+                  <th>Nome</th>
+                  <th>Pontuação</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Sónia Machado</td>
+                  <td>85</td>
+                </tr>
+                <tr>
+                  <td>João Silva</td>
+                  <td>90</td>
+                </tr>
+                <tr>
+                  <td>Maria Fernandes</td>
+                  <td>95</td>
+                </tr>
+              </tbody>
+              <tfoot> 
+                <tr>
+                  <td colspan="2">Boa sorte para a próxima</td>
+                </tr>
+              </tfoot>
+          </table>
+        </section>
+    </main>
+    <footer>
+      <h2>Informações de contacto</h2>
+      <p><button class="botao-informacoes">Exibir informações</button></p>
+      <div class="informacoes ">
+      <p>&copy; 2024 Sónia Machado. All rights reserved.</p>
+      </div>
+      
+    </footer>
+
+    <script src= "script.js"></script>
+  </body>
+</html>

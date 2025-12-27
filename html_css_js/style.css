@@ -1,0 +1,121 @@
+.amarelo {
+  color: yellow;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+} /*0 espaçamento entre as linhas, exemplo: 
+margin:0;
+padding:0;
+*/
+/* .sobre {
+  margin-bottom: 20px;
+  } colocado documentado shit+alt+A*/
+body {
+  background-color: #222;
+  color: #fff;
+  font-family: " Montsserrat";
+  line-height: 120%;
+}
+.light {
+  background-color: #222;
+  color: #fff;
+}
+section,
+footer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+section {
+  border-bottom: 1px solid #555;
+}
+header {
+  background-color: #111;
+  padding: 30x 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+/*assim estou a dizer o elemento header que está dentro de outro elemento que tem a classe light*/
+.light header {
+  background-color: #ddd;
+}
+.informacoes {
+  display: none;
+}
+.informacoes.visivel {
+  display: block;
+}
+
+/*quando altero um elemento pai, por exemplo body o que vai dentro desse seção será igualmente formatada, vão igualmente herdar esses elementos-refere-se à propriedade do color
+  a propriedade de cor de fundo não irá aplicar nos elementos filhos porque não se herda, depende de cada elemento*/
+h1 {
+  color: rgb(255, 153, 0);
+}
+/* algo mais especifico do elemento de que colocar um seletor. as classes permitem reciclar. poderá se vir a usar classes únicas ou compostas*/
+/*.habilidade {
+    background-color: #333;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    }
+    */
+.linguagem {
+  color: rgb(147, 147, 223);
+} /**/
+/* o id só se pode usar 1x na página id ="linguagem"por exemplo (não voltar a escrever id no corpo html para uma boa prática*/
+.vermelho {
+  color: rgb(252, 69, 49);
+} /**/
+#linguagem {
+  border: 2px solid rgb(147, 147, 223);
+  padding: 5px;
+}
+ul,
+ol {
+  margin-left: 15px;
+} /*alinhamento da lista para a direita*/
+/*alteração do tamanho da fonte*/
+.funcao {
+  font-size: 20px;
+} /*este não vai funcionar para o restante p*/
+
+.habilidades {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+a {
+  color: inherit;
+  transition: background-color 0.2s linear;
+}
+.light a {
+  color: #555;
+}
+a:hover {
+  color: lightblue;
+}
+button {
+  padding: 5px 10px;
+  border-radius: 10px;
+  border: none;
+  background-color: #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.2s linear;
+  cursor: pointer;
+}
+.light button {
+  background-color: #aaa;
+  color: white;
+}
+
+button:hover {
+  background: #bbb;
+}
+.light button:hover {
+  background-color: #777;
+}

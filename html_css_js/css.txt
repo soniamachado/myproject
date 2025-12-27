@@ -1,0 +1,25 @@
+Formas de escrever css (cascading style sheets=arquivos de estilização em Cascata)
+  -inline css
+  -internal css/ css interno
+  -external css /css externo 
+
+Slectores básicos:
+Elementos (h1,p,etc.).
+Classes (.classe).
+IDs (#id)
+
+Propriedaddes principais:
+  Cores (color, background-color).
+  Fontes (font-family, font-size).
+  Espaçamento (margin/espaçamento externo,  padding/espaçamento interno).
+  Alinhamento e layout básico (text-align, display, flexbox)
+
+  margin (espaçamento externo)
+  border(borda)
+  padding (espaçamento interno)
+  864x37(onde está o meu texto)
+
+seletor de elemento: header
+seletor de classe: habilidade
+seletor de id: linguagem
+seletor universal:* 
