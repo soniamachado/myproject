@@ -1,0 +1,57 @@
+ARG ALPINE_VERSION=3.23.2
+
+#FROM alpine:3.23.2
+FROM alpine:${ALPINE_VERSION}
+#instalando dependências no SO
+
+ENV DESENVOLVEDOR="Bruno Luiz"
+#RUN apk add --no-cache nodejs
+#RUN  apk add --no-cache npm
+#RUN  apk add --no-cache git
+
+#RUN apk add --no-cache nodejs &&\
+ #   apk add --no-cache npm &&\
+ #   apk add --no-cache git
+
+#RUN apk add --no-cache nodejs \
+ #   && apk add --no-cache npm \
+  #  && apk add --no-cache git
+
+RUN apk add --no-cache \
+    nodejs \
+    npm \
+    git \
+    nano
+#Adiciona um usuário no SO(Linux distro Alpine), necessário pesquisar para fazer essa instrução no sistema operacional desejado, Alpine. O alpine usa o comando adduser
+RUN adduser -D Jorge
+#Definir um usuário responável por executar as próximas instruções RUNs, e também para rodar o container. Boa prática de segurança
+USER Jorge
+
+LABEL desenvolvedor=${DESENVOLVEDOR} \
+    descrição="Imagem Docker com Alpine e NodeJS, para exemplificar a utilização de Labels no Dockerfile" \
+    versão="1.1" \
+    contacto="458239823"
+#não pode haver espaço entre a varável, o sinal de igual, e valor!
+#ENV FRONT_PRD="https://meuapp.com.br"
+#ENV Back_PRD="https://meuapp.com.br:3002"
+
+#não pode haver espaço entre a varável, o sinal de igual, e valor!
+ARG FRONT_PRD="https://meuapp.com.br"
+ARG BACK_PRD="https://meuapp.com.br:3002"
+
+ENV BACK_PRD="https://meuapp.com.br:3008"
+
+ENV Front_PRD=${FRONT_PRD} \
+    Back_PRD=${BACK_PRD} 
+
+ENV MSG="Variável de ambiente criada na Dockerfile"
+RUN echo ${MSG}> /tmp/arquivo_criado_durante_o_build_da_imagem.txt
+
+# Cada Dockerfile possui apenas um único CMD, -c é dó para determinar que o próximo comando a seguir deve ser interpretado como uma string
+
+ CMD ["/bin/sh", "-c","echo Comando executado automaticamente quando o container é iniciado"]
+ #na pratica o comando é : /bin/sh 'echo Comando executado automaticamente quando o container é iniciado'
+ #run executa as instruções no terminal em tempo de contrução da imagem (build time)
+ #cmd é só eexecutável no tempo de land time, não é executável no tempo de contruição (build time), ou seja, quando o container é iniciado a partir da imagem criada com esse Dockerfile, durante a execução d eum container
+ #fases de contrução de uma imagem(buildtime)
+ #fase da execução de um container(runtime)

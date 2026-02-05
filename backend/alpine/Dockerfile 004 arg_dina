@@ -1,0 +1,42 @@
+ARG ALPINE_VERSION
+
+#FROM alpine:3.23.2
+FROM alpine:${ALPINE_VERSION}
+#instalando dependências no SO
+
+ENV DESENVOLVEDOR="Bruno Luiz"
+#RUN apk add --no-cache nodejs
+#RUN  apk add --no-cache npm
+#RUN  apk add --no-cache git
+
+#RUN apk add --no-cache nodejs &&\
+ #   apk add --no-cache npm &&\
+ #   apk add --no-cache git
+
+#RUN apk add --no-cache nodejs \
+ #   && apk add --no-cache npm \
+  #  && apk add --no-cache git
+
+RUN apk add --no-cache \
+    nodejs \
+    npm \
+    git \
+    nano
+
+
+LABEL desenvolvedor=${DESENVOLVEDOR} \
+    descrição="Imagem Docker com Alpine e NodeJS, para exemplificar a utilização de Labels no Dockerfile" \
+    versão="1.1" \
+    contacto="458239823"
+#não pode haver espaço entre a varável, o sinal de igual, e valor!
+#ENV FRONT_PRD="https://meuapp.com.br"
+#ENV Back_PRD="https://meuapp.com.br:3002"
+
+#não pode haver espaço entre a varável, o sinal de igual, e valor!
+ARG FRONT_PRD="https://meuapp.com.br"
+ARG BACK_PRD="https://meuapp.com.br:3002"
+
+ENV FRONT_PRD=${FRONT_PRD} 
+ENV Back_PRD=${BACK_PRD} 
+ENV MSG="Variável de ambiente criada na Dockerfile"
+RUN echo ${MSG}> /tmp/arquivo_criado_durante_o_build_da_imagem.txt

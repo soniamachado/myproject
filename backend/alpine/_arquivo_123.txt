@@ -1,0 +1,1 @@
+Testando a configuração de usuário: grupo e permissão

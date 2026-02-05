@@ -1,0 +1,16 @@
+ARG ALPINE_VERSION=3.23.2
+
+#FROM alpine:3.23.2
+FROM alpine:${ALPINE_VERSION}
+
+#Serviço: Imprimir um texto terminal
+#ENTRYPOINT ["echo", "Parâmetro 1 - Instrução via ENTRYPOINT","\n"]
+CMD ["Parâmetro 2 - Instrução via CMD"]
+#CMD ["/bin/sh", "-c","echo Parâmetro 1- Instrução via CMD"]
+##sobrepõe
+
+
+COPY ./dockerfile-entrypoint.sh /start/dockerfile-entrypoint.sh
+#estou a copiar um arquivo para  aminha imagem no diretor start e depois dockerfile-entrypoint.sh
+RUN chmod +x /start/dockerfile-entrypoint.sh
+ENTRYPOINT ["/start/dockerfile-entrypoint.sh"]

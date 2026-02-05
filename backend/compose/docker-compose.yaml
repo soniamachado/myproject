@@ -1,0 +1,53 @@
+#criando o meu 1º arquivo docker-compose
+version: "3.8"
+
+networks:
+  #defenir a rede com rede-app.se não colocar o nome o docker vai deixar por padrão o seguinte nome:compose_rede-app,assim se definir  é rede-appp(caso o atributo name não seja denfenido). No entanto este rede tem de ser definida em qual dos containers vai ser usada essa rede
+  rede-app:
+    name: rede-app
+    driver: bridge
+
+volumes:
+  db-app:
+  nosql-app:
+
+services:
+
+  back-end:
+    container_name: back-end
+    build: 
+      context: ./back-end
+      dockerfile: Dockerfile
+      target: dev
+    volumes:
+      - ./back-end:/app
+    ports:
+      - "3001:3000"
+    restart: on-failure:5
+    networks:
+      - rede-app
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    #$ docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres
+    image: postgres:16.11-alpine3.23
+    container_name: db
+    environment:
+      - POSTGRES_PASSWORD=1234567
+    volumes:
+      - db-app:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+    networks:
+      - rede-app
+    healthcheck: 
+      #test: ["CMD", "pg_isready", "-U", "postgres"]
+      #test: ["CMD-SHELL", "pg_isready -U postgres"]
+      test: ["CMD-SHELL", "exit 1"] #comando de teste que sempre vai falhar para testar o comportamento do healthcheck
+      interval: 30s #1tentativa deve ser executada depois de 30s. O container vai ser executado em 30s o teste vai ser executado. #periodo de starting.
+      timeout: 5s # depois o teste vai dar retorno desse comando. Se o teste não der retorno em 5s, o teste é considerado como falha.
+      retries: 3
+      #os serviços podem ficar no estado: starting, unhealthy, healthy. O serviço só vai ser considerado como saudável depois que o teste for executado com sucesso 3 vezes consecutivas. Se o teste falhar 3 vezes consecutivas, o serviço é considerado como não saudável.

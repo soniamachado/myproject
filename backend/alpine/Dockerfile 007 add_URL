@@ -1,0 +1,52 @@
+ARG ALPINE_VERSION=3.23.2
+
+FROM alpine:${ALPINE_VERSION}
+#instalando dependências no SO
+
+ENV DESENVOLVEDOR="Bruno Luiz"
+
+RUN apk add --no-cache \
+    nodejs \
+    npm \
+    git \
+    nano \
+    unzip
+#Adiciona um usuário no SO(Linux distro Alpine), necessário pesquisar para fazer essa instrução no sistema operacional desejado, Alpine. O alpine usa o comando adduser
+RUN adduser -D jorge \
+    && addgroup dev \
+    && addgroup jorge dev
+#Definir um usuário responável por executar as próximas instruções RUNs, e também para rodar o container. Boa prática de segurança
+USER jorge
+
+LABEL desenvolvedor=${DESENVOLVEDOR} \
+    descrição="Imagem Docker com Alpine e NodeJS, para exemplificar a utilização de Labels no Dockerfile" \
+    contacto="458239823"
+
+
+#não pode haver espaço entre a varável, o sinal de igual, e valor!
+ARG FRONT_PRD="https://meuapp.com.br"
+ARG BACK_PRD="https://meuapp.com.br:3002"
+
+ENV BACK_PRD="https://meuapp.com.br:3008"
+
+ENV FRONT_PRD=${FRONT_PRD} \
+    BACK_PRD=${BACK_PRD} \
+    VERSAO='1.0.1'
+
+ENV MSG="Variável de ambiente criada na Dockerfile"
+RUN echo ${MSG}> /tmp/arquivo_criado_durante_o_build_da_imagem.txt
+
+# root copia o zip
+ADD --chown=jorge:dev ./arquivo_.zip /tmp/arquivos/files.zip
+
+RUN cd /tmp/arquivos/ \
+    && unzip files.zip \
+    && rm files.zip 
+
+ADD --chown=jorge:dev https://argus-academy.com/cursos/docker_-_dominando_a_criacao_e_o_gerenciamento_de_containers/server.tar.gz /opt/app/
+RUN cd /opt/app/ \
+    && tar -xzf server.tar.gz \
+    && rm server.tar.gz
+# Cada Dockerfile possui apenas um único CMD, -c é dó para determinar que o próximo comando a seguir deve ser interpretado como uma string
+CMD ["/bin/sh", "-c","cd /opt/app/ && node server.js"]
+

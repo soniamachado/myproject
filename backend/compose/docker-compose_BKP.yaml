@@ -1,0 +1,150 @@
+#criando o meu 1º arquivo docker-compose
+version: "3.8"
+
+networks:
+  #defenir a rede com rede-app.se não colocar o nome o docker vai deixar por padrão o seguinte nome:compose_rede-app,assim se definir  é rede-appp(caso o atributo name não seja denfenido). No entanto este rede tem de ser definida em qual dos containers vai ser usada essa rede
+  rede-app:
+    name: rede-app
+    driver: bridge
+
+volumes:
+  db-app:
+  nosql-app:
+
+services:
+  http:
+    image: nginx:stable-alpine3.23
+    container_name: http
+    ports:
+      - "8080:80"
+      - "8843:443"
+    restart: "no"
+    networks:
+      - rede-app
+    depends_on:
+      front-end:
+        condition: service_started
+      back-end:
+        condition: service_started
+
+  front-end:
+    container_name: front-end
+    build: 
+      context: ./front-end
+      dockerfile: Dockerfile.dev
+      target: dev #targetStage alvo do build dentro do Dockerfile
+    volumes:
+      - ./front-end:/app #vai copiar tudo o que tenho na pasta front-end com ligacação bind, para dentro do diretorio /app no wordir, dentro do container. ele vai buildar a imgaem e mapear o volume, na sequencia, e depois é que o comando cmd vai ser executado do dockerfile. o coamndo npm i vai executar as depedencias, gera o package-lock.json(que serve d ebase para produção) e depois executa o npm run dev, o modo de desenvolvimento das aplicações do nextjs
+    ports:
+      - "3000:3000"
+    restart: always
+    networks:
+      - rede-app
+    depends_on:
+      back-end:
+        condition:
+
+  back-end:
+    container_name: back-end
+    build: 
+      context: ./back-end
+      dockerfile: Dockerfile
+      target: dev
+    volumes:
+      - ./back-end:/app
+    ports:
+      - "3001:3000"
+    restart: on-failure:5
+    networks:
+      - rede-app
+    depends_on:
+      migration:
+        condition: service_completed_successfully
+      db:
+        condition: service_healthy
+      nosql:
+        condition: service_started
+      cache:
+        condition: service_started
+      massaging:  
+        condition: service_started
+  
+  #adicionou-se um novo serviço ao sistema de serviços. Scripts que vamos criar ao longo do desenvolvimento do projeto, que armazenm todas as alterações estruturais do banco de dados, ou seja, as migrações do banco de dados. Assim, toda vez que for necessário criar uma nova tabela, ou alterar uma tabela já existente, ou seja, qualquer alteração estrutural no banco de dado leva ao geramento de novas script e colocar dentro desse serviço de migração. E toda vez que a gente subir o sistema de serviços, esse serviço de migração vai ser executado e ele vai executar todos os scripts de migração que ainda não foram executados no banco de dados. Assim, a gente garante que o banco de dados esteja sempre atualizado com as últimas alterações estruturais necessárias para o funcionamento da aplicação. Não é back up, nem snapshot, apenas armazena o processo de devolução do banco do ponto de vista de estrutura. Ideia do serviço para testar especificamente o service Completed Successful.?
+ # Fazer com que o banco de dados dependa da execução completa desse serviço, do container associado a ele. que vai ser iniciado vai executar as migrations no banco de dados.
+  migration:
+    container_name: migration
+    image: alpine:latest
+    networks:
+      - rede-app
+    command: sleep 10 #exit 0
+    #o ou seja o container vai iniciar e dormir por 10 segundos e depois ele vai finalizar a execução. Simulando o tempo que levaria para executar as migrações no banco de dados.
+    depends_on:
+      db:
+        condition: service_started
+
+  db:
+    #$ docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres
+    image: postgres:16.11-alpine3.23
+    container_name: db
+    environment:
+      - POSTGRES_PASSWORD=1234567
+    volumes:
+      - db-app:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+    networks:
+      - rede-app
+    healthcheck: 
+      #test: ["CMD", "pg_isready", "-U", "postgres"]
+      #test: ["CMD-SHELL", "exit 1"] #comando de teste que sempre vai falhar para testar o comportamento do healthcheck
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 30s #1tentativa deve ser executada depois de 30s. O container vai ser executado em 30s o teste vai ser executado. #periodo de starting.
+      timeout: 5s # depois o teste vai dar retorno desse comando. Se o teste não der retorno em 5s, o teste é considerado como falha.
+      retries: 3
+   
+  db-admin:
+    container_name: db-admin
+    image: adminer:latest
+    ports:
+      - "8090:8080"
+    environment:
+      - ADMINER_DEFAULT_SERVER=db
+    networks:
+      - rede-app
+    depends_on:
+      db:
+        condition: service_healthy
+    
+
+  nosql:
+    container_name: nosql
+    image: mongo:8.2.4-noble
+    restart: always
+    ports:
+      - 27018:27017
+    volumes:
+      - nosql-app:/data/db
+    env_file:
+      - ./mongo/.env
+    networks:
+      - rede-app
+
+  #$  ... redis redis-server --save 60 1 --loglevel warning
+  cache:
+    container_name: cache
+    image: redis:8.4.0
+    command: redis-server --save 60 1 --loglevel warning
+    ports:
+      - 6379:6379
+    networks:
+      - rede-app
+
+  massaging:
+    container_name: massaging
+    image: apache/kafka:4.1.1
+    networks:
+      - rede-app
+    ports:
+      - 9092:9092
+    #$ docker run -p 9092:9092 apache/kafka:4.1.1-

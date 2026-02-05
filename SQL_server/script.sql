@@ -18,7 +18,7 @@ GO
 
 --id(int,pk)   nome(NVARCHAR)   preco(DECIMAL)    quantidade(INT)
 --1              Banana         1.2                 150
---2              Laranja        0.8                 200´
+--2              Laranja        0.8                 200
 
 
 

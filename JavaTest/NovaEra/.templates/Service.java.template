@@ -1,0 +1,35 @@
+package com.example.cursoNovaEra.service;
+
+import com.example.cursoNovaEra.dto.${EntityName}DTO;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class ${EntityName}Service {
+
+    public List<${EntityName}DTO> findAll() {
+        // TODO: Implementar lógica
+        return List.of();
+    }
+
+    public Optional<${EntityName}DTO> findById(Long id) {
+        // TODO: Implementar lógica
+        return Optional.empty();
+    }
+
+    public ${EntityName}DTO save(${EntityName}DTO dto) {
+        // TODO: Implementar lógica
+        return null;
+    }
+
+    public ${EntityName}DTO update(Long id, ${EntityName}DTO dto) {
+        // TODO: Implementar lógica
+        return null;
+    }
+
+    public void deleteById(Long id) {
+        // TODO: Implementar lógica
+    }
+}

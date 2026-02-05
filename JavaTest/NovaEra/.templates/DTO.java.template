@@ -1,0 +1,43 @@
+package com.example.cursoNovaEra.dto;
+
+import java.time.LocalDateTime;
+
+public class ${EntityName}DTO {
+
+    private Long id;
+    // Adicione seus campos aqui
+    // Exemplo:
+    // private String nome;
+    // private String descricao;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
+
+    // Construtores
+    public ${EntityName}DTO() {
+    }
+
+    // Getters e Setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+}

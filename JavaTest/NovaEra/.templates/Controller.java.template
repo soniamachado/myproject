@@ -1,0 +1,47 @@
+package com.example.cursoNovaEra.controller;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/${entityName:lowercase}")
+public class ${EntityName}Controller {
+
+    // GET - Listar todos
+    @GetMapping
+    public ResponseEntity<List<${EntityName}DTO>> getAll() {
+        // TODO: Implementar lógica
+        return ResponseEntity.ok(List.of());
+    }
+
+    // GET - Buscar por ID
+    @GetMapping("/{id}")
+    public ResponseEntity<${EntityName}DTO> getById(@PathVariable Long id) {
+        // TODO: Implementar lógica
+        return ResponseEntity.ok(null);
+    }
+
+    // POST - Criar novo
+    @PostMapping
+    public ResponseEntity<${EntityName}DTO> create(@RequestBody ${EntityName}DTO dto) {
+        // TODO: Implementar lógica
+        return ResponseEntity.status(HttpStatus.CREATED).body(null);
+    }
+
+    // PUT - Atualizar
+    @PutMapping("/{id}")
+    public ResponseEntity<${EntityName}DTO> update(@PathVariable Long id, @RequestBody ${EntityName}DTO dto) {
+        // TODO: Implementar lógica
+        return ResponseEntity.ok(null);
+    }
+
+    // DELETE - Deletar
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        // TODO: Implementar lógica
+        return ResponseEntity.noContent().build();
+    }
+}

@@ -1,0 +1,12 @@
+FROM alpine:3.23.2
+#instalando dependências no SO
+
+RUN <<EOF
+    apk add --no-cache nodejs
+    apk add --no-cache npm
+    apk add --no-cache git
+EOF
+LABEL desenvolvedor="Bruno Luiz"\
+    descrição="Imagem Docker com Alpine e NodeJS, para exemplificar a utilização de Labels no Dockerfile" \
+    versão="1.1" \
+    contacto="458239823"

@@ -1,0 +1,36 @@
+ARG ALPINE_VERSION=3.23.2
+FROM alpine:${ALPINE_VERSION}
+#instalando dependências no SO
+
+WORKDIR /
+RUN mkdir ./logs
+RUN echo "1-Diretório de trabalho atual: $(pwd)"> /logs/1.txt
+
+RUN apk add --no-cache \
+    nodejs \
+    npm \
+    git \
+    nano \
+    unzip
+
+WORKDIR /opt/
+RUN echo "2-Diretório de trabalho atual: $(pwd)"> /logs/2.txt
+ADD https://argus-academy.com/cursos/docker_-_dominando_a_criacao_e_o_gerenciamento_de_containers/server.tar.gz ./code/
+
+WORKDIR /opt/code
+RUN echo "3-Diretório de trabalho atual: $(pwd)"> /logs/3.txt
+RUN tar -xzf server.tar.gz \
+    && rm server.tar.gz
+
+ENTRYPOINT ["node"]
+CMD ["server.js"]
+
+#/tcp indico que a exposição da porta é 3000 via protocolo TCP
+#não tem problema usar a mesma porta e protocolos diferente, como protocolos iguais e a porta diferente
+EXPOSE 3000/tcp
+EXPOSE 3000/udp
+#embora coloque 3030 não significa que a aplicação dentro do container irá rodar nesta porta, isso depende da aplicação.sem indicação por padrão tcp
+EXPOSE 3030
+
+
+ 
