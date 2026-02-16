@@ -1,0 +1,48 @@
+generator client {
+  provider = "prisma-client"
+  output   = "./generated/prisma" 
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+//nomes seguindo PascalCase. Ex.:UserInfo
+model Band {
+  id          String   @id @default(uuid()) @db.Uuid
+  name        String   @unique
+  slug        String   @unique
+  description String? //com? indico que o campo é opcional, ou seja, pode ser nulo
+  status      Status   @default(active)
+  createdAt   DateTime @default(now()) @map("created_at") //camelCase no código, mas snake_case no banco de dados, usando @map para mapear o nome do campo no banco de dados
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  //Estabelecendo o relacionamento entre as tabelas, uma banda tem muitas músicas, e cada música pertence a uma banda, usando a anotação @relation para indicar o relacionamento entre as tabelas, e o campo tracks para indicar que uma banda tem muitas músicas. 1 Band->N Tracks
+  tracks      Tracks[] @relation("BandTracks") //campo de relacionamento, indicando que uma banda tem muitas músicas, usando o
+
+  //nomes no plural seguindo snake_Case. Ex.:user_infos
+  @@map("bands")
+}
+
+//nomes seguindo PascalCase. Ex.:UserInfo
+model Tracks {
+  id               String   @id @default(uuid()) @db.Uuid
+  title            String
+  slug             String   @unique
+  durationInSecond Int      @map("duration_in_second") //duração em segundos
+  createdAt        DateTime @default(now()) @map("created_at")
+  updatedAt        DateTime @updatedAt @map("updated_at")
+
+  //chave estrangeira (fk)
+  bandId String @map("band_id") @db.Uuid //campo de chave estrangeira, tipo uuid, mapeado para band_id no banco de dados 
+  //Relacionamento: Cada Track pertence a uma Band
+  band   Band   @relation("BandTracks", fields: [bandId], references: [id], onDelete: Cascade)
+
+  //Adiciona um indice para o campo bandId, para melhorar a performance das consultas que filtram por banda, usando a anotação @index para criar um índice no campo bandId
+  @@index([bandId])
+  @@map("tracks")
+}
+
+enum Status {
+  active
+  inactive
+}

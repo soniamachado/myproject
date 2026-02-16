@@ -1,0 +1,5 @@
+# o que eu quero que não vá para o copy dos ficheiros que estão paralelos ao Dockerfile
+node_modules
+.next
+Dockerfile
+.dokerignore

@@ -1,0 +1,23 @@
+networks:
+  spotify-network:
+    name: spotify-network
+    driver: bridge
+services:
+  spotify-blackoffice:
+    container_name: spotify-blackoffice #nome do container, para facilitar a identificação do container em execução, e para evitar conflitos com outros containers que possam ter o mesmo nome.
+    build:
+      context: .
+      dockerfile: Dockerfile
+      #com a script o dockerfile que está na raiz do projeto usa. e contexto como local onde vai ser contruido a imagem.
+      target: dev #target do dockerfile para desenvolvimento, é como alvo buildar a imagem até o estágio dev do arquivo dockerfile, para produção seria production
+    image: spotify-blackoffice:latest #nome da imagem que vai ser criada, que já deve ser a mesma do dockerfile
+    command: sh -c "npm install && npm run dev" #comando para rodar a aplicação, primeiro instala as dependências e depois roda a aplicação em modo de desenvolvimento, o sh -c é necessário para rodar os dois comandos em sequência.
+    networks:
+      - spotify-network
+    ports:
+      - "3001:3000"
+
+    volumes:
+      - .:/app #vai colocae os documentos de fora dentro do diretorio /app do container em execução, ou seja, o código fonte do projeto, /app porque é wordir do dockerfile.
+      - /app/node_modules # E scincronizar com node_modules vai tornar aplicação insustentável. No lunx não é necessário, mas no windows e mac é necessário para evitar problemas de permissão. O node_modules do container não vai ser sincronizado com o host, e o node_modules do container não vai ser sobrescrito pelo do host, ou seja, o node_modules do container vai ser mantido, e o node_modules do host não vai ser criado. no entanto mantem-se para partilhar com outros sistemas operacionais, como windows e mac, para evitar problemas de permissão.
+

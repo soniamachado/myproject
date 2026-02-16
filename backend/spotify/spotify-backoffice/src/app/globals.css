@@ -1,0 +1,4 @@
+@import "tailwindcss";
+.header {
+  background-color: rgb(37, 37, 117);
+}
