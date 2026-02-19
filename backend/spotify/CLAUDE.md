@@ -5,6 +5,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Project Overview
 
 This is a Spotify-inspired monorepo containing three main components:
+
 - **spotify-clone**: Public-facing music streaming application
 - **spotify-backoffice**: Admin interface for managing bands and tracks
 - **spotify-db**: PostgreSQL database container setup
@@ -16,14 +17,17 @@ All services run in Docker containers and communicate through a shared `spotify-
 ### Database Setup
 
 From the [spotify-db](spotify-db/) directory:
+
 ```bash
 docker compose up
 ```
+
 This starts PostgreSQL 17.8 on port 5432.
 
 ### Spotify Clone (Frontend)
 
 From the [spotify-clone](spotify-clone/) directory:
+
 ```bash
 # Start with Docker
 docker compose up
@@ -38,6 +42,7 @@ npm run lint
 ### Spotify Backoffice (Admin)
 
 From the [spotify-backoffice](spotify-backoffice/) directory:
+
 ```bash
 # Start with Docker
 docker compose up  # Runs on http://localhost:3001
@@ -84,16 +89,17 @@ The database schema is located in [spotify-backoffice/prisma/schema.prisma](spot
 - Next.js App Router with TypeScript and route groups
 - **Route Groups**:
   - `(admin)`: Protected admin pages
-    - [/home](spotify-backoffice/src/app/(admin)/home/): Dashboard
-    - [/bands](spotify-backoffice/src/app/(admin)/bands/): Band management (list, detail)
-    - [/tracks](spotify-backoffice/src/app/(admin)/tracks/): Track management (list, detail)
+    - [/home](<spotify-backoffice/src/app/(admin)/home/>): Dashboard
+    - [/bands](<spotify-backoffice/src/app/(admin)/bands/>): Band management (list, detail)
+    - [/tracks](<spotify-backoffice/src/app/(admin)/tracks/>): Track management (list, detail)
   - `(public)`: Public pages
-    - [/login](spotify-backoffice/src/app/(public)/login/): Login, forgot password, reset password
+    - [/login](<spotify-backoffice/src/app/(public)/login/>): Login, forgot password, reset password
 - Shared components in [src/app/components](spotify-backoffice/src/app/components/)
 
 ### Docker Configuration
 
 All three services use Docker:
+
 - **Database**: Uses `postgres:17.8` image, exposes port 5432
 - **Frontend & Backoffice**: Both use `node:24.13.0-alpine3.22`
 - **Network**: All services connect to `spotify-network` (bridge driver)
@@ -103,6 +109,7 @@ All three services use Docker:
 ### Environment Variables
 
 Backoffice requires `.env` file (see [.env.example](spotify-backoffice/.env.example)):
+
 ```
 DATABASE_URL="postgresql://<user>:<password>@<host>:<port>/<database>?schema=public"
 ```
@@ -110,6 +117,7 @@ DATABASE_URL="postgresql://<user>:<password>@<host>:<port>/<database>?schema=pub
 ## Tech Stack
 
 ### Spotify Clone
+
 - Next.js 16.1.6
 - React 19.2.3
 - TypeScript 5
@@ -117,6 +125,7 @@ DATABASE_URL="postgresql://<user>:<password>@<host>:<port>/<database>?schema=pub
 - Lucide React (icons)
 
 ### Spotify Backoffice
+
 - Next.js 16.1.6
 - React 19.2.3
 - TypeScript 5
