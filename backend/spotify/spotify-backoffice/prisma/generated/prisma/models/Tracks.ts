@@ -42,6 +42,7 @@ export type TracksMinAggregateOutputType = {
   createdAt: Date | null
   updatedAt: Date | null
   bandId: string | null
+  coverUrl: string | null
 }
 
 export type TracksMaxAggregateOutputType = {
@@ -52,6 +53,7 @@ export type TracksMaxAggregateOutputType = {
   createdAt: Date | null
   updatedAt: Date | null
   bandId: string | null
+  coverUrl: string | null
 }
 
 export type TracksCountAggregateOutputType = {
@@ -62,6 +64,7 @@ export type TracksCountAggregateOutputType = {
   createdAt: number
   updatedAt: number
   bandId: number
+  coverUrl: number
   _all: number
 }
 
@@ -82,6 +85,7 @@ export type TracksMinAggregateInputType = {
   createdAt?: true
   updatedAt?: true
   bandId?: true
+  coverUrl?: true
 }
 
 export type TracksMaxAggregateInputType = {
@@ -92,6 +96,7 @@ export type TracksMaxAggregateInputType = {
   createdAt?: true
   updatedAt?: true
   bandId?: true
+  coverUrl?: true
 }
 
 export type TracksCountAggregateInputType = {
@@ -102,6 +107,7 @@ export type TracksCountAggregateInputType = {
   createdAt?: true
   updatedAt?: true
   bandId?: true
+  coverUrl?: true
   _all?: true
 }
 
@@ -199,6 +205,7 @@ export type TracksGroupByOutputType = {
   createdAt: Date
   updatedAt: Date
   bandId: string
+  coverUrl: string
   _count: TracksCountAggregateOutputType | null
   _avg: TracksAvgAggregateOutputType | null
   _sum: TracksSumAggregateOutputType | null
@@ -232,6 +239,7 @@ export type TracksWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Tracks"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Tracks"> | Date | string
   bandId?: Prisma.UuidFilter<"Tracks"> | string
+  coverUrl?: Prisma.StringFilter<"Tracks"> | string
   band?: Prisma.XOR<Prisma.BandScalarRelationFilter, Prisma.BandWhereInput>
 }
 
@@ -243,6 +251,7 @@ export type TracksOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   bandId?: Prisma.SortOrder
+  coverUrl?: Prisma.SortOrder
   band?: Prisma.BandOrderByWithRelationInput
 }
 
@@ -257,6 +266,7 @@ export type TracksWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"Tracks"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Tracks"> | Date | string
   bandId?: Prisma.UuidFilter<"Tracks"> | string
+  coverUrl?: Prisma.StringFilter<"Tracks"> | string
   band?: Prisma.XOR<Prisma.BandScalarRelationFilter, Prisma.BandWhereInput>
 }, "id" | "slug">
 
@@ -268,6 +278,7 @@ export type TracksOrderByWithAggregationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   bandId?: Prisma.SortOrder
+  coverUrl?: Prisma.SortOrder
   _count?: Prisma.TracksCountOrderByAggregateInput
   _avg?: Prisma.TracksAvgOrderByAggregateInput
   _max?: Prisma.TracksMaxOrderByAggregateInput
@@ -286,6 +297,7 @@ export type TracksScalarWhereWithAggregatesInput = {
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Tracks"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Tracks"> | Date | string
   bandId?: Prisma.UuidWithAggregatesFilter<"Tracks"> | string
+  coverUrl?: Prisma.StringWithAggregatesFilter<"Tracks"> | string
 }
 
 export type TracksCreateInput = {
@@ -295,6 +307,7 @@ export type TracksCreateInput = {
   durationInSecond: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  coverUrl?: string
   band: Prisma.BandCreateNestedOneWithoutTracksInput
 }
 
@@ -306,6 +319,7 @@ export type TracksUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   bandId: string
+  coverUrl?: string
 }
 
 export type TracksUpdateInput = {
@@ -315,6 +329,7 @@ export type TracksUpdateInput = {
   durationInSecond?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  coverUrl?: Prisma.StringFieldUpdateOperationsInput | string
   band?: Prisma.BandUpdateOneRequiredWithoutTracksNestedInput
 }
 
@@ -326,6 +341,7 @@ export type TracksUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   bandId?: Prisma.StringFieldUpdateOperationsInput | string
+  coverUrl?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type TracksCreateManyInput = {
@@ -336,6 +352,7 @@ export type TracksCreateManyInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   bandId: string
+  coverUrl?: string
 }
 
 export type TracksUpdateManyMutationInput = {
@@ -345,6 +362,7 @@ export type TracksUpdateManyMutationInput = {
   durationInSecond?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  coverUrl?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type TracksUncheckedUpdateManyInput = {
@@ -355,6 +373,7 @@ export type TracksUncheckedUpdateManyInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   bandId?: Prisma.StringFieldUpdateOperationsInput | string
+  coverUrl?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type TracksListRelationFilter = {
@@ -375,6 +394,7 @@ export type TracksCountOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   bandId?: Prisma.SortOrder
+  coverUrl?: Prisma.SortOrder
 }
 
 export type TracksAvgOrderByAggregateInput = {
@@ -389,6 +409,7 @@ export type TracksMaxOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   bandId?: Prisma.SortOrder
+  coverUrl?: Prisma.SortOrder
 }
 
 export type TracksMinOrderByAggregateInput = {
@@ -399,6 +420,7 @@ export type TracksMinOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   bandId?: Prisma.SortOrder
+  coverUrl?: Prisma.SortOrder
 }
 
 export type TracksSumOrderByAggregateInput = {
@@ -462,6 +484,7 @@ export type TracksCreateWithoutBandInput = {
   durationInSecond: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  coverUrl?: string
 }
 
 export type TracksUncheckedCreateWithoutBandInput = {
@@ -471,6 +494,7 @@ export type TracksUncheckedCreateWithoutBandInput = {
   durationInSecond: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  coverUrl?: string
 }
 
 export type TracksCreateOrConnectWithoutBandInput = {
@@ -510,6 +534,7 @@ export type TracksScalarWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Tracks"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Tracks"> | Date | string
   bandId?: Prisma.UuidFilter<"Tracks"> | string
+  coverUrl?: Prisma.StringFilter<"Tracks"> | string
 }
 
 export type TracksCreateManyBandInput = {
@@ -519,6 +544,7 @@ export type TracksCreateManyBandInput = {
   durationInSecond: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  coverUrl?: string
 }
 
 export type TracksUpdateWithoutBandInput = {
@@ -528,6 +554,7 @@ export type TracksUpdateWithoutBandInput = {
   durationInSecond?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  coverUrl?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type TracksUncheckedUpdateWithoutBandInput = {
@@ -537,6 +564,7 @@ export type TracksUncheckedUpdateWithoutBandInput = {
   durationInSecond?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  coverUrl?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type TracksUncheckedUpdateManyWithoutBandInput = {
@@ -546,6 +574,7 @@ export type TracksUncheckedUpdateManyWithoutBandInput = {
   durationInSecond?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  coverUrl?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -558,6 +587,7 @@ export type TracksSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   createdAt?: boolean
   updatedAt?: boolean
   bandId?: boolean
+  coverUrl?: boolean
   band?: boolean | Prisma.BandDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tracks"]>
 
@@ -569,6 +599,7 @@ export type TracksSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   createdAt?: boolean
   updatedAt?: boolean
   bandId?: boolean
+  coverUrl?: boolean
   band?: boolean | Prisma.BandDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tracks"]>
 
@@ -580,6 +611,7 @@ export type TracksSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   createdAt?: boolean
   updatedAt?: boolean
   bandId?: boolean
+  coverUrl?: boolean
   band?: boolean | Prisma.BandDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tracks"]>
 
@@ -591,9 +623,10 @@ export type TracksSelectScalar = {
   createdAt?: boolean
   updatedAt?: boolean
   bandId?: boolean
+  coverUrl?: boolean
 }
 
-export type TracksOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "slug" | "durationInSecond" | "createdAt" | "updatedAt" | "bandId", ExtArgs["result"]["tracks"]>
+export type TracksOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "slug" | "durationInSecond" | "createdAt" | "updatedAt" | "bandId" | "coverUrl", ExtArgs["result"]["tracks"]>
 export type TracksInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   band?: boolean | Prisma.BandDefaultArgs<ExtArgs>
 }
@@ -617,6 +650,7 @@ export type $TracksPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     createdAt: Date
     updatedAt: Date
     bandId: string
+    coverUrl: string
   }, ExtArgs["result"]["tracks"]>
   composites: {}
 }
@@ -1048,6 +1082,7 @@ export interface TracksFieldRefs {
   readonly createdAt: Prisma.FieldRef<"Tracks", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Tracks", 'DateTime'>
   readonly bandId: Prisma.FieldRef<"Tracks", 'String'>
+  readonly coverUrl: Prisma.FieldRef<"Tracks", 'String'>
 }
     
 

@@ -78,7 +78,8 @@ export const BandScalarFieldEnum = {
   description: 'description',
   status: 'status',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  coverUrl: 'coverUrl'
 } as const
 
 export type BandScalarFieldEnum = (typeof BandScalarFieldEnum)[keyof typeof BandScalarFieldEnum]
@@ -91,7 +92,8 @@ export const TracksScalarFieldEnum = {
   durationInSecond: 'durationInSecond',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  bandId: 'bandId'
+  bandId: 'bandId',
+  coverUrl: 'coverUrl'
 } as const
 
 export type TracksScalarFieldEnum = (typeof TracksScalarFieldEnum)[keyof typeof TracksScalarFieldEnum]

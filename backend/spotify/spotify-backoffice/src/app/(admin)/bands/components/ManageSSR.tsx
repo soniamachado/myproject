@@ -1,17 +1,19 @@
 import Button from "@/app/components/Button";
-interface Band {
-  name: string;
-  status: string;
-}
+import { Band } from "../../../../../prisma/generated/prisma/client";
 
-const TableRow = ({ name, status }: Band) => {
+const TableRow = ({ band }: { band: Band }) => {
   return (
     <tr>
-      <td className="px-6 py-4 white-nowrap text-gray-800">{name}</td>
+      <td className="px-6 py-4 white-nowrap text-gray-800">{band.name}</td>
+      <td className="px-6 py-4 white-nowrap text-gray-800">
+        {band.description && band.description.length > 30
+          ? `${band.description.slice(0, 30)}...`
+          : band.description}
+      </td>
       <td className="px-6 py-4 white-nowrap ">
-        {status}
+        {band.status}
         <span className="inline-flex items-center px-2 py-0.5 rounded bg-green-100 text-green-800">
-          {status}
+          {band.status}
         </span>
       </td>
       <td className="text-rigth font-sm space-x-4 whitespace-nowrap">
@@ -22,7 +24,9 @@ const TableRow = ({ name, status }: Band) => {
   );
 };
 
-export default function List() {
+export default async function ManageSSR() {
+  const response = await fetch("http://localhost:3000/api/band");
+  const bands: Band[] = await response.json();
   return (
     <section className="overflow-x-auto p-4">
       <header className="flex justify-end mb-4">
@@ -36,6 +40,12 @@ export default function List() {
             Nome
           </th>
           <th scope="col" className="px-6 py-3">
+            Descrição
+          </th>
+          <th scope="col" className="px-6 py-3">
+            Status
+          </th>
+          <th scope="col" className="px-6 py-3">
             Status
           </th>
           <th scope="col" className="px-6 py-3">
@@ -43,8 +53,15 @@ export default function List() {
           </th>
         </tr>
         <tbody className="bg-white divide-y divide-gray-200">
-          <TableRow name="Henrique &Juliano " status="ativo"></TableRow>
-          <TableRow name="Capital Inicial " status="ativo"></TableRow>
+          {Array.isArray(bands) && bands.length > 0 ? (
+            bands.map((band) => <TableRow key={band.id} band={band} />)
+          ) : (
+            <tr>
+              <td colSpan={3} className="text-center text-gray-500 py-4">
+                Nenhuma registro cadastrada
+              </td>
+            </tr>
+          )}
         </tbody>
       </table>
     </section>
